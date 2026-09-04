@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adnan Salam | Product Manager & AI/ML Researcher</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-hover: #0284c7;
+            --accent: #818cf8;
+            --border-color: #334155;
+            --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0 60px;
+            scroll-margin-top: 70px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 70px;
+        }
+
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        /* Circular Image Styling */
+        .hero-image-container {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Responsive adjustment for smaller screens */
+    @media (max-width: 768px) {
+        .hero-wrapper {
+            flex-direction: column-reverse;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .btn-outline {
+            margin-left: 10px;
+        }
+    }
+
+        .hero-tag {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            max-width: 650px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #000;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .highlights-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .highlights-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .highlights-card ul {
+            list-style: none;
+        }
+
+        .highlights-card li {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .highlights-card i {
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        /* Timeline / Experience */
+        .timeline {
+            position: relative;
+            border-left: 2px solid var(--border-color);
+            padding-left: 30px;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -37px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 4px solid var(--bg-color);
+        }
+
+        .timeline-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timeline-company {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .timeline-desc {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-desc li {
+            margin-bottom: 6px;
+        }
+
+        /* Projects Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-category {
+            margin-bottom: 30px;
+        }
+
+        .skills-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--card-bg);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                transition: 0.3s ease;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            
+        }
+
+        .logo img {
+            height: 40px; /* Adjust height to fit your navbar cleanly */
+            width: auto;  /* Maintains image aspect ratio */
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <!-- <a href="#hero" class="logo">Adnan Bin Abdus Salam</a> -->
+                 <a href="#hero" class="logo">
+                    <img src="logo.png" alt="Adnan Salam Logo"> Adnan's Space
+                </a>
+
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+
+            <div class="hero-wrapper">
+
+                <div class="hero-content">
+                    <p class="hero-tag">Hello, I'm</p>
+                    <h1 class="hero-title">Adnan Bin Abdus Salam</h1>
+                    <h2 class="hero-subtitle">Product Manager & AI/ML Researcher</h2>
+                    <p class="hero-desc">
+                        Founder & CEO at <em>Tech to the Future</em> and an active AI/ML researcher. Worked in leading software companies to bridge software R&D, data science, and product growth strategies to build scalable products serving millions globally.
+                    </p>
+                    <div>
+                        <a href="#contact" class="btn">Get In Touch</a>
+                        <a href="#research" class="btn btn-outline">View Work</a>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="hero-image-container">
+                        <img src=mypic.jpeg alt="Adnan Salam" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        I am a Computer Science & Engineering graduate specializing in product strategy, software R&D, and machine learning applications. With over two years of experience guiding products for a global user base of over 1.3 million, I focus on combining data-driven market insights with execution.
+                    </p>
+                    <p>
+                        My background spans technical software testing, developer workflows, data science research, and cross-functional team management. Currently, I publish independent technology research and guide product lifecycles from concept to high-impact launch.
+                    </p>
+                </div>
+                <div class="highlights-card">
+                    <h3>Quick Facts</h3>
+                    <ul>
+                        <li><i class="fa-solid fa-graduation-cap"></i> <span><strong>B.Sc. in CSE:</strong> AIUB (CGPA 3.74/4.00)</span></li>
+                        <li><i class="fa-solid fa-award"></i> <span><strong>Language:</strong> IELTS Band 8.0</span></li>
+                        <li><i class="fa-solid fa-star"></i> <span><strong>Award:</strong> Best New Employee of the Year (Roxnor)</span></li>
+                        <li><i class="fa-solid fa-medal"></i> <span><strong>Honors:</strong> Duke of Edinburgh Gold Awardee</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-role">American International University-Bangladesh</div>
+                    <div class="timeline-company">Bachelor of Science in Computer Science and Engineering</div>
+                    <div class="timeline-date">Class of 2023</div>
+                    <ul class="timeline-desc">
+                        <li>CGPA: 3.74, on a scale of 4.00</li>
+                    </ul>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-role">Founder & CEO</div>
+                    <div class="timeline-company">Tech to the Future</div>
+                    <div class="timeline-date">August 2026 – Present</div>
+                    <ul class="timeline-desc">
+                        <li>Founded and manage an independent publication covering Linux, open-source software, academic research, and practical computing.</li>
+                        <li>Lead content strategy, website development, SEO, and editorial planning for research-backed technology content.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-role">Operations Manager</div>
+                    <div class="timeline-company">SF Properties</div>
+                    <div class="timeline-date">November 2025 – July 2026</div>
+                    <ul class="timeline-desc">
+                        <li>Managed client acquisition, property viewings, lease coordination, and overall website administration.</li>
+                        <li>Streamlined day-to-day property operations and client relations workflows.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-role">Product Executive</div>
+                    <div class="timeline-company">Roxnor (XpeedStudio & Wpmet)</div>
+                    <div class="timeline-date">January 2024 – October 2025</div>
+                    <ul class="timeline-desc">
+                        <li>Guided product strategy and R&D for software tools (including GetGenie AI & ElementsKit) serving 1M+ active users.</li>
+                        <li>Served as Product Lead for EmailKit, leveraging SEO and analytics to guide global content strategies.</li>
+                        <li>Collaborated with software engineers and UI/UX teams to resolve user issues and enhance overall product UX.</li>
+                        <li>Directed technical promotional video projects to boost software feature awareness.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-role">Product Manager</div>
+                    <div class="timeline-company">Digiflakes</div>
+                    <div class="timeline-date">January 2023 – December 2023</div>
+                    <ul class="timeline-desc">
+                        <li>Executed competitive market analysis, keyword research, and SEO strategy as Product Lead for Crew HRM — an Employee, Leave and Recruitment Management System.</li>
+                        <li>Performed functional software testing, bug tracking, and UI design revisions in Figma.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-role">Intern</div>
+                    <div class="timeline-company">The Future Institute</div>
+                    <div class="timeline-date">September 2022 – December 2022</div>
+                    <ul class="timeline-desc">
+                        <li>Maintained graphic design assets and front-end website updates, improving content accessibility.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-role">Instructor</div>
+                    <div class="timeline-company">Self-employed</div>
+                    <div class="timeline-date">January 2021 – August 2022</div>
+                    <ul class="timeline-desc">
+                        <li>Provided instruction in Mathematics, Science, English Literature, and other subjects to school students.</li>
+                        <li>Worked directly with students to understand their needs, identify knowledge gaps, and tailor learning approaches accordingly.</li>
+                        <li>Translated complex concepts into clear, accessible explanations for different audiences.</li>
+                        <li>Managed student schedules, progress tracking, and ongoing communication with students and parents.</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-role">Community Manager</div>
+                    <div class="timeline-company">Bangladesh Generation Parliament (UNICEF & BDF)</div>
+                    <div class="timeline-date">January 2019 – December 2020</div>
+                    <ul class="timeline-desc">
+                        <li>Mentored and coordinated youth across Bangladesh within a national policymaking framework.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="research">
+        <div class="container">
+            <h2 class="section-title">Research</h2>
+            <div class="grid">
+                
+                
+
+                <div class="card">
+                    <div>
+                        <h3>Neonatal Mortality Prediction</h3>
+                        <p>Published research paper introducing a deep learning and machine learning methodology to predict neonatal mortality outcomes.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Publication</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Healthcare AI</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <h3>Parkinson’s Disease Detection</h3>
+                        <p>[Ongoing Research] Developing AI/ML models using wearable and sensor metrics to assist in early Parkinson’s detection.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Research</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+<section id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="grid">
+                
+               
+
+                <div class="card">
+                    <div>
+                        <h3>Predictive Donor Targeting Model</h3>
+                        <p>Machine learning classification model analyzing historical donor data to predict future donation likelihood and enhance targeting.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">ML</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <h3>E-HealthCare Platform</h3>
+                        <p>Full-stack digital healthcare management web platform handling end-to-end hospital operational data and workflows.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Laravel</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            
+            <div class="skills-category">
+                <h3>Technical & AI Development</h3>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">Scikit-learn</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Matplotlib</span>
+                    <span class="tag">Seaborn</span>
+                    <span class="tag">Git & GitHub</span>
+                    <span class="tag">Software QA & Testing</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3>Product Management & Strategy</h3>
+                <div class="tags">
+                    <span class="tag">Product Strategy</span>
+                    <span class="tag">Roadmap Planning</span>
+                    <span class="tag">Market Analysis</span>
+                    <span class="tag">Agile Methodologies</span>
+                    <span class="tag">Stakeholder Management</span>
+                    <span class="tag">User Research</span>
+                    <span class="tag">PLM</span>
+                    <span class="tag">Figma</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3>Growth & Content Strategy</h3>
+                <div class="tags">
+                    <span class="tag">SEO & Keyword Research</span>
+                    <span class="tag">Product Launch Strategy</span>
+                    <span class="tag">Google Analytics (GA4)</span>
+                    <span class="tag">Content Development</span>
+                    <span class="tag">Technical Video Marketing</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p>I am open to professional opportunities, research collaborations, and product advisory roles. Feel free to reach out directly.</p>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> adnansalam007@gmail.com</p>
+                    <!--<p><i class="fa-solid fa-phone" style="color: var(--primary);"></i> +8801966648694</p> -->
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/adnan-s-47871b102/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://github.com/AdnanSalam" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://codeforces.com/profile/adnansalam007" target="_blank" aria-label="Codeforces"><i class="fa-solid fa-code"></i></a>
+                        <a href="https://scholar.google.com/citations?user=juiaeIkAAAAJ&hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+                    </div>
+                </div>
+
+                <!--
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent!');">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                    -->
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Adnan Salam. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Highlight Active Section on Scroll
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
